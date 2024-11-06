@@ -1,0 +1,56 @@
+<odoo>
+    <!-- Template para la página de votación -->
+    <template id="voting_page_template" name="Voting Page Template">
+        <t t-call="website.layout">
+            <div class="container">
+                <h1>Sistema de Votación - UNIACME</h1>
+                
+                <!-- Formulario para que el estudiante ingrese su número de cédula -->
+                <form action="/submit_vote" method="post" class="mt-4">
+                    <div class="form-group">
+                        <label for="student_id">Id de estudiante</label>
+                        <input type="text" id="student_id" name="student_id" required="required" class="form-control"/>
+                    </div>
+
+                    <!-- Selección de votación -->
+                    <div class="form-group">
+                        <label for="votacion">Elige un proceso de votación</label>
+                        <select id="votacion" name="votacion" required="required" class="form-control" onchange="updateCandidates()">
+                        <option selected="selected" disabled="disabled">Elige un proceso de votación</option>  
+                        <!-- <select id="votacion" name="votacion" required="required" class="form-control"> -->
+                            <t t-foreach="request.env['uniacme.election'].search([])" t-as="votacion">
+                            <!-- <t t-foreach="request.env['uniacme.election']" t-as="votacion"> -->
+                                <option t-att-value="votacion.id" t-esc="votacion.description"/>
+                            </t>
+                        </select>
+                    </div>
+
+                    <!-- Selección de candidato -->
+                    <div class="form-group">
+                        <label for="candidato">Seleccione el Candidato:</label>
+                        <select id="candidato" name="candidato" required="required" class="form-control" onchange="showCandidatePhoto()">
+                            <option selected="selected" disabled="disabled">Elige un candidato</option> 
+                        </select>
+                    </div>
+
+                    <div id="candidate-photo-container" class="mt-3" style="display: none;">
+                        <img id="candidate-photo" src="" alt="Foto del Candidato" style="max-width: 200px; border-radius: 10px;" />
+                    </div> 
+
+                    <button type="submit" class="btn btn-primary mt-3">Votar</button>
+                </form>
+
+            </div>
+
+            <!-- Incluir el archivo JavaScript -->
+            <script type="text/javascript" src="/uniacme_votaciones/static/src/js/voting_page.js"></script>
+        </t>
+    </template>
+
+    <record id="voting_page" model="website.page">
+        <field name="name">Voting Page</field>
+        <field name="url">/voting_page</field>
+        <field name="view_id" ref="voting_page_template"/>
+    </record>
+
+</odoo>

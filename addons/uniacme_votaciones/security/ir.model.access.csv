@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_uniacme_campus,uniacme.campus,model_uniacme_campus,base.group_user,1,1,1,1
+access_uniacme_election,uniacme.election,model_uniacme_election,base.group_user,1,1,1,1
+access_uniacme_vote,uniacme.vote,model_uniacme_vote,base.group_user,1,1,1,1

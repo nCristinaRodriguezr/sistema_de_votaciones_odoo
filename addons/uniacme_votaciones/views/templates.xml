@@ -1,0 +1,7 @@
+<odoo>
+    <template id="layout" inherit_id="website.layout">
+        <xpath expr="//footer" position="replace">
+            <footer>Sistema de elecciones Unicame</footer>
+        </xpath>
+    </template>
+</odoo>

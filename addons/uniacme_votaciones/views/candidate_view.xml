@@ -1,0 +1,48 @@
+<odoo>
+        <!-- Vista de lista para candidatos -->
+        <record id="view_candidate_list" model="ir.ui.view">
+            <field name="name">candidate.list</field>
+            <field name="model">res.partner</field>
+            <field name="arch" type="xml">
+                <list string="Candidatos">
+                    <field name="name"/>
+                    <field name="candidate_id"/>
+                    <field name="is_candidate"/>
+                    <!--<field name="election_ids"/>-->
+                </list>
+            </field>
+        </record>
+
+        <!-- Vista de formulario para candidatos -->
+        <record id="view_candidate_form" model="ir.ui.view">
+            <field name="name">candidate.form</field>
+            <field name="model">res.partner</field>
+            <field name="arch" type="xml">
+                <form string="Candidato">
+                    <field name="name" placeholder="Nombre del candidato"/>
+                    <field name="candidate_id" placeholder="Numero de ID unico"/>
+                    <!-- <field name="election_ids"/> -->
+                    <!-- Sección para mostrar la foto del candidato -->
+                    <group>
+                        <!-- Campo de imagen para mostrar y editar la foto del candidato -->
+                        <field name="image_1920" widget="image" class="oe_avatar" options="{'size': [150, 150]}"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <!-- Acción para abrir las vistas de los candidatos -->
+        <record id="action_candidate" model="ir.actions.act_window">
+            <field name="name">Candidatos</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_mode">list,form</field>
+            <field name="domain">[('is_candidate', '=', True)]</field>
+            <field name="context">{'default_is_candidate': True}</field>
+            <field name="view_ids" eval="[(5, 0, 0),
+                                        (0, 0, {'view_mode': 'list', 'view_id': ref('view_candidate_list')}),
+                                        (0, 0, {'view_mode': 'form', 'view_id': ref('view_candidate_form')})]"/>
+        </record>
+
+        <!-- Submenú para candidatos -->
+        <menuitem id="menu_candidate" name="Candidatos" parent="menu_university_root" action="action_candidate"/>
+</odoo>

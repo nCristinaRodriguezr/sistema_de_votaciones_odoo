@@ -1,0 +1,48 @@
+<odoo>
+    
+        <!-- Vista de lista para las sedes universitarias -->
+        <record id="view_university_campus_list" model="ir.ui.view">
+            <field name="name">university.campus.list</field>
+            <field name="model">uniacme.campus</field>
+            <field name="arch" type="xml">
+                <list string="Sedes Universitarias">
+                    <field name="name"/>
+                    <field name="country"/>
+                    <field name="timezone"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- Vista de formulario (Form) para las sedes universitarias -->
+        <record id="view_university_campus_form" model="ir.ui.view">
+            <field name="name">university.campus.form</field>
+            <field name="model">uniacme.campus</field>
+            <field name="arch" type="xml">
+                <form string="Sede Universitaria">
+                <sheet>
+                    <field name="name" placeholder="Nombre de la Sede"/>
+                    <field name="country" placeholder="Elige el Pais"/>
+                    <field name="timezone" placeholder="Elige la Zona Horaria"/>
+                </sheet>
+                </form>
+            </field> 
+        </record>
+
+        <!-- Acción para abrir las vistas de las sedes universitarias -->
+        <record id="action_university_campus" model="ir.actions.act_window">
+            <field name="name">Sedes Universitarias</field>
+            <field name="res_model">uniacme.campus</field>
+            <field name="view_mode">list</field>
+            <field name="view_id" ref="view_university_campus_list"/>
+            <!-- <field name="view_ids" eval="[(5, 0, 0), 
+                                        (0, 0, {'view_mode': 'list', 'view_id': ref('view_university_campus_list')}), 
+                                        (0, 0, {'view_mode': 'form', 'view_id': ref('view_university_campus_form')})]"/> -->
+        </record>
+
+        <!-- Menú para las sedes universitarias -->
+        <!-- Menú raíz para Universidad -->
+        <menuitem id="menu_university_root" name="Universidad"/>
+        <!-- Submenú para sedes universitarias -->
+        <menuitem id="menu_university_campus" name="Sedes" parent="menu_university_root" action="action_university_campus"/>
+    
+</odoo>
