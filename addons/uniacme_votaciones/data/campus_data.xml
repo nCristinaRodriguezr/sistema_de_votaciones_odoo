@@ -1,0 +1,91 @@
+<odoo>
+    <!-- datos de sedes -->
+    <record id="sede_1" model="uniacme.campus">
+        <field name="name">Sede Colombia</field>
+        <field name="country" ref="base.co"/>
+        <field name="timezone">America/Bogota</field>
+    </record>
+    <record id="sede_2" model="uniacme.campus">
+        <field name="name">Sede Venezuela</field>
+        <field name="country" ref="base.ve"/>
+        <field name="timezone">America/Caracas</field>
+    </record>
+    <record id="sede_3" model="uniacme.campus">
+        <field name="name">Sede Argentina</field>
+        <field name="country" ref="base.ar"/>
+        <field name="timezone">America/Argentina/Buenos_Aires</field>
+    </record>
+    <record id="sede_4" model="uniacme.campus">
+        <field name="name">Sede Bélgica</field>
+        <field name="country" ref="base.be"/>
+        <field name="timezone">Europe/Brussels</field>
+    </record>
+
+    <!-- datos de estudiantes -->
+    <record id="estudiante_1" model="res.partner">
+        <field name="name">Armando Mendoza</field>
+        <field name="career">Administración de empresas</field>
+        <field name="student_id">11111</field>
+        <field name="is_student">1</field>
+        <field name="campus" ref="sede_1"/>
+    </record>
+    <record id="estudiante_2" model="res.partner">
+        <field name="name">Marcela Valencia</field>
+        <field name="career">Marketing</field>
+        <field name="student_id">22222</field>
+        <field name="is_student">1</field>
+        <field name="campus" ref="sede_2"/>
+    </record>
+    <record id="estudiante_3" model="res.partner">
+        <field name="name">Nicolas Mora</field>
+        <field name="career">Ecomomia</field>
+        <field name="student_id">33333</field>
+        <field name="is_student">1</field>
+        <field name="campus" ref="sede_3"/>
+    </record>
+    <record id="estudiante_4" model="res.partner">
+        <field name="name">Beatriz Pinzon Solano</field>
+        <field name="career">Contaduría Pública</field>
+        <field name="student_id">44444</field>
+        <field name="is_student">1</field>
+        <field name="campus" ref="sede_4"/>
+    </record>
+
+    <!-- datos de candidatos -->
+    <record id="candidato_1" model="res.partner">
+        <field name="name">Homero Simpson</field>
+        <field name="candidate_id">55555</field>
+        <field name="is_candidate">1</field>
+    </record>
+    <record id="candidato_2" model="res.partner">
+        <field name="name">Naruto Uzumaki</field>
+        <field name="candidate_id">66666</field>
+        <field name="is_candidate">1</field>
+    </record>
+    <record id="candidato_3" model="res.partner">
+        <field name="name">Buster Moon</field>
+        <field name="candidate_id">77777</field>
+        <field name="is_candidate">1</field>
+    </record>
+    <record id="candidato_4" model="res.partner">
+        <field name="name">Edna Moda</field>
+        <field name="candidate_id">88888</field>
+        <field name="is_candidate">1</field>
+    </record>
+
+    <!-- datos para porcesos de votación -->
+    <record id="proceso_votacion_1" model="uniacme.election">
+        <field name="description">Votaciones para presidente</field>
+        <field name="start_date">2024-11-08 11:00:00</field>
+        <field name="end_date">2024-11-08 13:00:00</field>
+        <field name="state">ongoing</field>
+        <field name="candidate_ids" eval="[(6, 0, [ref('candidato_2'), ref('candidato_4')])]"/>
+    </record>
+    <record id="proceso_votacion_2" model="uniacme.election">
+        <field name="description">Votaciones para VicePresidente</field>
+        <field name="start_date">2024-11-08 11:00:00</field>
+        <field name="end_date">2024-11-08 13:00:00</field>
+        <field name="state">ongoing</field>
+        <field name="candidate_ids" eval="[(6, 0, [ref('candidato_1'), ref('candidato_3')])]"/>
+    </record>
+</odoo>

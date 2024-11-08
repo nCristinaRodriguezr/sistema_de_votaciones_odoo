@@ -16,6 +16,7 @@
         'views/templates.xml',
         'views/pages.xml',
         'views/report_votes.xml',
+        'data/campus_data.xml',
     ],
     'assets': {
         'web.assets_backend': [
