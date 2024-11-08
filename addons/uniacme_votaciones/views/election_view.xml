@@ -19,16 +19,44 @@
             <field name="model">uniacme.election</field>
             <field name="arch" type="xml">
                 <form string="Proceso de Votación">
-                    <field name="description" placeholder="Descripción de las votaciones"/>
-                    <field name="start_date" placeholder="Fecha de inicio de las votaciones"/>
-                    <field name="end_date" placeholder="Fecha final de las votaciones"/>
-                    <!-- <field name="timezone"/> -->
-                    <field name="candidate_ids" widget="many2many_tags" placeholder="Elige los candidatos"/>
-                    <field name="state" placeholder="Elige el estado de la votación"/>
+                    <sheet>
+                        <group>
+                            <field name="description" placeholder="Descripción de las votaciones"/>
+                            <field name="start_date" placeholder="Fecha de inicio de las votaciones"/>
+                            <field name="end_date" placeholder="Fecha final de las votaciones"/>
+                            <field name="state" placeholder="Elige el estado de la votación"/>
+                        </group>
+                        <!-- la estiqueta notebook es para menjar las pestañas que puede tener un formulario -->
+                        <notebook>
+                            <page string="Candidatos">
+                                <field name="candidate_ids" mode="kanban" context="{'default_is_candidate': True}"
+                                    options="{'kanban_view_ref': 'uniacme_votaciones.view_election_kanban'}"/>
+                            </page>
+                        </notebook>S
+                    </sheet>
                 </form>
             </field>
         </record>
-
+        <record id="view_election_kanban" model="ir.ui.view">
+            <field name="name">election.kanban</field>
+            <field name="model">uniacme.election</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click">
+                                <t t-foreach="record.candidate_ids.raw_value" t-as="candidate">
+                                    <img t-att-src="'/web/image/res.partner/' + str(candidate.id) + '/image_1920'" 
+                                        t-att-alt="candidate.name" 
+                                        class="oe_tag_image"/>
+                                    <span><t t-esc="candidate.name"/></span>
+                                </t>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
         <!-- Acción para la lista de Procesos de Votación -->
         <record id="action_election" model="ir.actions.act_window">
             <field name="name">Procesos de Votación</field>
