@@ -17,9 +17,7 @@
                         <label for="votacion">Elige un proceso de votación</label>
                         <select id="votacion" name="votacion" required="required" class="form-control" onchange="updateCandidates()">
                         <option selected="selected" disabled="disabled">Elige un proceso de votación</option>  
-                        <!-- <select id="votacion" name="votacion" required="required" class="form-control"> -->
                             <t t-foreach="request.env['uniacme.election'].search([])" t-as="votacion">
-                            <!-- <t t-foreach="request.env['uniacme.election']" t-as="votacion"> -->
                                 <option t-att-value="votacion.id" t-esc="votacion.description"/>
                             </t>
                         </select>
@@ -42,7 +40,7 @@
 
             </div>
 
-            <!-- Incluir el archivo JavaScript -->
+            <!-- cargo el archivo Javascript -->
             <script type="text/javascript" src="/uniacme_votaciones/static/src/js/voting_page.js"></script>
         </t>
     </template>
