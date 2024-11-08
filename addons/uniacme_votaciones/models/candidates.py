@@ -15,3 +15,5 @@ class Candidate(models.Model):
     _sql_constraints = [
         ('unique_candidate_id', 'unique(candidate_id)', 'El número de identificación debe ser único para cada candidato.')
     ]
+
+    

@@ -15,6 +15,7 @@
         'views/election_view.xml',
         'views/templates.xml',
         'views/pages.xml',
+        'views/report_votes.xml',
     ],
     'assets': {
         'web.assets_backend': [
